@@ -23,8 +23,6 @@ function setup() {
 	engine = Engine.create();
 	world = engine.world;
 
-	
-
 	//Create the Bodies Here.
 	Ground = new ground(500,700,1000,15)
 	Stone = new stone(198,570,50);
@@ -50,14 +48,14 @@ function draw()
   rectMode(CENTER);
   background(0);
 
-  image(boyImg,260,630,250,250);
+  boy = image(boyImg,260,630,250,250);
   
   Engine.update(engine);
 
 
   Ground.display();
-  Stone.display();
   Tree.display();
+  Stone.display();
   mango1.display();
   mango2.display();
   mango3.display();
@@ -66,6 +64,7 @@ function draw()
   mango6.display();
   mango7.display();
   mango8.display();
+ 
 
   detectCollision(Stone,mango1);
   detectCollision(Stone,mango2);
@@ -99,6 +98,13 @@ var distance = dist(stoneBodyPosition.x,stoneBodyPosition.y,mangoBodyPosition.x,
 if(distance<=lmango.r+lstone.r)
 {
 	Matter.Body.setStatic(lmango.body,false);
-	launcherObj.attach(Stone.body);
 }
+}
+
+function keyPressed()
+{
+  if(keyCode === 32)
+  {
+    launcherObj.attach(Stone.body);
+  }
 }
